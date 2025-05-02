@@ -1,7 +1,6 @@
 package com.chuckcha.spring.config;
 
 import com.chuckcha.spring.database.pool.ConnectionPool;
-import com.chuckcha.spring.database.repository.CrudRepository;
 import com.chuckcha.spring.database.repository.UserRepository;
 import com.chuckcha.spring.service.CompanyService;
 import com.chuckcha.web.config.WebConfiguration;

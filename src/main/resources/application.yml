@@ -20,10 +20,33 @@ db:
       timeout: 3
 #spring.profiles.active: qa
 
+
 logging:
   level:
-    root: WARN
+    root: INFO
     com.chuckcha.spring.database.pool: INFO
+    org.springframework.jdbc.core: TRACE
   file:
     name: chuckcha.log
     path: /
+spring:
+  mvc:
+    format:
+      date: iso
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
+    password: pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties.hibernate:
+      batch_size: 50
+      show_sql: true
+      format_sql: true
+      hbm2ddl.auto: validate
+    open-in-view: false
+server:
+  port: 8083

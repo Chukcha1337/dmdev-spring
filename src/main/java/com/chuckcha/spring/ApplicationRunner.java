@@ -3,7 +3,6 @@ package com.chuckcha.spring;
 import com.chuckcha.spring.config.ApplicationConfiguration;
 import com.chuckcha.spring.database.pool.ConnectionPool;
 import com.chuckcha.spring.database.repository.CompanyRepository;
-import com.chuckcha.spring.database.repository.CrudRepository;
 import com.chuckcha.spring.database.repository.UserRepository;
 import com.chuckcha.spring.ioc.Container;
 import com.chuckcha.spring.service.CompanyService;
