@@ -15,7 +15,7 @@ import java.util.List;
         attributeNodes = @NamedAttributeNode("company"))
 @Data
 @ToString(exclude = "userChats")
-@EqualsAndHashCode(of = "username")
+@EqualsAndHashCode(of = "username", callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

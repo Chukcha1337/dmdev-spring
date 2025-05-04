@@ -32,7 +32,7 @@ public class UserService {
 //                .add(filter.lastname(), user.lastname::containsIgnoreCase)
 //                .add(filter.birthDate(), user.birthDate::before)
 //                .build();
-//
+
 //        return userRepository.findAll(predicate, pageable)
 //                .map(userReadMapper::map);
 //    }
