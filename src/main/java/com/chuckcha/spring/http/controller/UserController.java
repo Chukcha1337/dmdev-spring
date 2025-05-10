@@ -2,6 +2,7 @@ package com.chuckcha.spring.http.controller;
 
 import com.chuckcha.spring.database.entity.Role;
 import com.chuckcha.spring.database.entity.User;
+import com.chuckcha.spring.dto.PageResponse;
 import com.chuckcha.spring.dto.UserCreateEditDto;
 import com.chuckcha.spring.dto.UserFilter;
 import com.chuckcha.spring.dto.UserReadDto;
@@ -14,6 +15,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,14 +39,19 @@ public class UserController {
 
     @GetMapping
     public String findAll(Model model, UserFilter filter, Pageable pageable) {
-//        Page<UserReadDto> page = userService.findAll(filter, pageable);
-//        model.addAttribute("users", PageResponse.of(page));
+        Page<UserReadDto> page = userService.findAll(filter, pageable);
+        model.addAttribute("users", PageResponse.of(page));
         model.addAttribute("filter", filter);
         return "user/users";
     }
 
+
     @GetMapping("/{id}")
-    public String findById(@PathVariable("id") Long id, Model model) {
+
+    public String findById(@PathVariable("id") Long id,
+                           Model model,
+                           @CurrentSecurityContext SecurityContext securityContext,
+                           @AuthenticationPrincipal UserDetails userDetails) {
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
@@ -68,7 +80,8 @@ public class UserController {
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
             return "redirect:/users/registration";
         }
-        return "redirect:/users/" + userService.create(user).getId();
+        userService.create(user);
+        return "redirect:/login";
     }
 
     //    @PutMapping("/{id}")

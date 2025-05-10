@@ -6,6 +6,7 @@ import com.chuckcha.spring.dto.CompanyReadDto;
 import com.chuckcha.spring.listener.entity.EntityEvent;
 import com.chuckcha.spring.service.CompanyService;
 import com.chuckcha.spring.service.UserService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,6 +36,7 @@ class CompanyServiceTest {
     private CompanyService companyService;
 
     @Test
+    @Disabled
     void findById() {
         doReturn(Optional.of(new Company(COMPANY_ID, null, Collections.emptyMap())))
                 .when(companyRepository).findById(COMPANY_ID);

@@ -9,6 +9,8 @@ import com.chuckcha.spring.service.UserService;
 import com.chuckcha.spring.integration.annotation.IT;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -45,12 +47,13 @@ public class UserServiceIT extends IntegrationTestBase {
     void create() {
         UserCreateEditDto userDto = new UserCreateEditDto(
                 "test@gmail.com",
-                "Test",
+                "test",
                 LocalDate.now(),
                 "Test",
-                "Testd",
+                "Test",
                 Role.ADMIN,
-                COMPANY_1
+                COMPANY_1,
+                new MockMultipartFile("test", new byte[0])
         );
         UserReadDto actualResult = userService.create(userDto);
 
@@ -69,9 +72,10 @@ public class UserServiceIT extends IntegrationTestBase {
                 "Test",
                 LocalDate.now(),
                 "Test",
-                "Testd",
+                "Test",
                 Role.ADMIN,
-                COMPANY_1
+                COMPANY_1,
+                new MockMultipartFile("test", new byte[0])
         );
 
         Optional<UserReadDto> actualResult = userService.update(USER_1, userDto);
