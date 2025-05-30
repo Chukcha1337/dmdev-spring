@@ -25,4 +25,5 @@ public class ApplicationRunner {
         ConfigurableApplicationContext context = SpringApplication.run(ApplicationRunner.class, args);
         System.out.println(context.getBeanDefinitionCount());
     }
+
 }
